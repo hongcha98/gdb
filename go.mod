@@ -1,4 +1,4 @@
-module github.com/cyrus-and/gdb
+module github.com/hongcha98/gdb
 
 go 1.18
 
