@@ -62,6 +62,16 @@ func NewCustom(gdbPath string, onNotification NotificationCallback) (*Gdb, error
 	return gdb, nil
 }
 
+// Like New, but allows to specify the GDB executable path.
+func NewCustomTty(gdbPath string, onNotification NotificationCallback, tty string) (*Gdb, error) {
+	cmd := []string{gdbPath, "--nx", "--quiet", "--interpreter=mi2", "--tty", tty}
+	gdb, err := NewCmd(cmd, onNotification)
+	if err != nil {
+		return nil, err
+	}
+	return gdb, nil
+}
+
 // NewCmd creates a new GDB instance like New, but allows explicitely passing
 // the gdb command to run (including all arguments). cmd is passed as-is to
 // exec.Command, so the first element should be the command to run, and the
