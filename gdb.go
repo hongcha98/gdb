@@ -128,6 +128,10 @@ func (gdb *Gdb) Interrupt() error {
 	return gdb.cmd.Process.Signal(os.Interrupt)
 }
 
+func (gdb *Gdb) GetPtsFd() int {
+	return int(gdb.pts.Fd())
+}
+
 // Exit sends the exit command to GDB and waits for the process to exit.
 func (gdb *Gdb) Exit() error {
 	// send the exit command and wait for the GDB process
